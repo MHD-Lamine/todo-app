@@ -10,3 +10,8 @@ body {
 li {
   margin: 10px;
 }
+
+.done{
+  text-decoration: line-through;
+  color: gray;
+}

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Todo App (Vanilla JavaScript)
 
 ## Description
@@ -30,4 +29,4 @@ Application de gestion de tâches simple développée en JavaScript pur.
 - HTML
 - CSS
 - JavaScript
->>>>>>> abfa922 (Add task creation feature)
+

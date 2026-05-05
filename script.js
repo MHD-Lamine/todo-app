@@ -14,12 +14,39 @@ function addTask() {
 	input.value="";
 }
 
-function createTaskElement(text){
+function createTaskElement(text, done = false){
 
 	const li = document.createElement("li");
 
-	li.textContent = text;
 
+	//checkbox
+	const checkBox = document.createElement("input");
+	checkBox.type = "checkbox";
+	checkBox.checked = done;
+
+	//span
+	const span = document.createElement("span");
+	span.textContent = text;
+
+
+	//button supprimer
+	const deleteBtn = document.createElement("button");
+	deleteBtn.textContent = "❌"
+
+	//Style si termine
+
+	if (done) {span.classList.add("done");}
+
+	//event checkboxe
+	checkBox.addEventListener("change", () => {
+		span.classList.toggle("done");
+	});
+
+	deleteBtn.addEventListener("click", () => {
+		li.remove();
+	});
+
+	li.append(checkBox, span, deleteBtn);
 	list.appendChild(li);
 
 }
