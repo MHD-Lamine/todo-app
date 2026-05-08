@@ -1,6 +1,9 @@
+const themeToggle = document.getElementById("themeToggle");
+
 const taskCount = document.getElementById("taskCount");
 const filterButtons = document.querySelectorAll("[data-filter]");
 const clearCompletedBtn = document.getElementById("clearCompleted");
+
 
 const input = document.getElementById('taskInput');
 const button = document.getElementById("addBtn");
@@ -36,6 +39,13 @@ clearCompletedBtn.addEventListener(
   "click",
   clearCompletedTasks
 );
+
+themeToggle.addEventListener("click", () => {
+
+  document.body.classList.toggle("dark");
+
+  saveTheme();
+});
 
 
 function createTaskElement(text, done = false) {
@@ -170,5 +180,25 @@ function clearCompletedTasks() {
   updateTaskCount();
 }
 
+function saveTheme() {
 
+  const darkMode =
+    document.body.classList.contains("dark");
+
+  localStorage.setItem(
+    "darkMode",
+    darkMode
+  );
+}
+
+function loadTheme() {
+
+  const darkMode =
+    localStorage.getItem("darkMode");
+
+  if (darkMode === "true") {
+    document.body.classList.add("dark");
+  }
+}
+loadTheme();
 loadTasks();
