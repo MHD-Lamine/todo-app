@@ -1,3 +1,7 @@
+const taskCount = document.getElementById("taskCount");
+const filterButtons = document.querySelectorAll("[data-filter]");
+const clearCompletedBtn = document.getElementById("clearCompleted");
+
 const input = document.getElementById('taskInput');
 const button = document.getElementById("addBtn");
 const list = document.getElementById('taskList');
@@ -16,6 +20,23 @@ function addTask() {
 
 	input.value = "";
 }
+
+filterButtons.forEach((button) => {
+
+  button.addEventListener("click", () => {
+
+    const filter =
+      button.dataset.filter;
+
+    filterTasks(filter);
+  });
+});
+
+clearCompletedBtn.addEventListener(
+  "click",
+  clearCompletedTasks
+);
+
 
 function createTaskElement(text, done = false) {
 
@@ -53,10 +74,13 @@ function createTaskElement(text, done = false) {
 	deleteBtn.addEventListener("click", () => {
 		li.remove();
 		saveTasks();
+		//updateTaskCount();
 	});
 
 	li.append(checkBox, span, deleteBtn);
 	list.appendChild(li);
+
+	updateTaskCount();
 }
 
 function saveTasks() {
@@ -101,5 +125,50 @@ function editTask(span){
 	saveTasks();
 
 }
+
+function updateTaskCount(){
+
+const total = document.querySelectorAll("li").length;
+
+taskCount.textContent = `${total} tâche(s)`;
+
+}
+
+function filterTasks(filter){
+
+	document.querySelectorAll("li").forEach((li) => {
+		const checked = li.querySelector("input").checked;
+
+		switch(filter){
+			case "active":
+				li.style.display = checked ? "none" : "flex";
+				break;
+
+			case "done":
+				li.style.display = checked ? "flex" : "none";
+
+			default: 
+				li.style.display = "flex";
+		}
+	});
+}
+
+function clearCompletedTasks() {
+
+  document.querySelectorAll("li")
+    .forEach((li) => {
+
+      const checked =
+        li.querySelector("input").checked;
+
+      if (checked) {
+        li.remove();
+      }
+    });
+
+  saveTasks();
+  updateTaskCount();
+}
+
 
 loadTasks();
