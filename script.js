@@ -30,6 +30,10 @@ function createTaskElement(text, done = false) {
 	const span = document.createElement("span");
 	span.textContent = text;
 
+	span.addEventListener("dblclick", () => {
+		editTask(span);
+	});
+
 	// bouton supprimer
 	const deleteBtn = document.createElement("button");
 	deleteBtn.textContent = "❌";
@@ -77,6 +81,25 @@ function loadTasks() {
 	tasks.forEach((task) => {
 		createTaskElement(task.text, task.done);
 	});
+}
+
+function editTask(span){
+
+	const oldText = span.textContent;
+
+	const newText = prompt("Modifier la tâche :", oldText);
+
+	// sécurité
+	if (newText === null) return;
+
+	const trimmedText = newText.trim();
+
+	if (!trimmedText) return;
+
+	span.textContent = trimmedText;
+
+	saveTasks();
+
 }
 
 loadTasks();
