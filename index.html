@@ -9,14 +9,22 @@
 
 <body>
 
-  <h1>Ma Todo List</h1>
+  <div class="app">
 
-  <div class="container">
-    <input id="taskInput" placeholder="Ajouter une tâche..." />
-    <button id="addBtn">Ajouter</button>
+    <h1 class="title">Todo App</h1>
+
+    <div class="todo-input">
+      <input
+        id="taskInput"
+        type="text"
+        placeholder="Ajouter une tâche..."
+      />
+
+      <button id="addBtn">Ajouter</button>
+    </div>
+
+    <ul id="taskList"></ul>
   </div>
-
-  <ul id="taskList"></ul>
 
   <script src="script.js"></script>
 </body>
