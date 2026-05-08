@@ -5,45 +5,47 @@ const list = document.getElementById('taskList');
 button.addEventListener("click", addTask);
 
 function addTask() {
+
 	const text = input.value.trim();
 
-	//sécurité
+	// sécurité
 	if (!text) return;
 
 	createTaskElement(text);
 	saveTasks();
-	input.value="";
+
+	input.value = "";
 }
 
-function createTaskElement(text, done = false){
+function createTaskElement(text, done = false) {
 
 	const li = document.createElement("li");
 
-
-	//checkbox
+	// checkbox
 	const checkBox = document.createElement("input");
 	checkBox.type = "checkbox";
 	checkBox.checked = done;
 
-	//span
+	// span
 	const span = document.createElement("span");
 	span.textContent = text;
 
-
-	//button supprimer
+	// bouton supprimer
 	const deleteBtn = document.createElement("button");
-	deleteBtn.textContent = "❌"
+	deleteBtn.textContent = "❌";
 
-	//Style si termine
+	// style si terminé
+	if (done) {
+		span.classList.add("done");
+	}
 
-	if (done) {span.classList.add("done");}
-
-	//event checkboxe
+	// événement checkbox
 	checkBox.addEventListener("change", () => {
 		span.classList.toggle("done");
 		saveTasks();
 	});
 
+	// événement suppression
 	deleteBtn.addEventListener("click", () => {
 		li.remove();
 		saveTasks();
@@ -51,11 +53,9 @@ function createTaskElement(text, done = false){
 
 	li.append(checkBox, span, deleteBtn);
 	list.appendChild(li);
-
 }
 
-
-function saveTasks(){
+function saveTasks() {
 
 	const tasks = [];
 
@@ -64,16 +64,17 @@ function saveTasks(){
 		const text = li.querySelector("span").textContent;
 		const done = li.querySelector("input").checked;
 
-		tasks.push({text, done});
+		tasks.push({ text, done });
 	});
 
-	localStarage.setItem("tasks_data", JSON.stringify(tasks));
+	localStorage.setItem("tasks_data", JSON.stringify(tasks));
 }
 
-function loadTasks(){
-	const task = JSON.parse(localStarage.getItem("tasks_data"));
+function loadTasks() {
 
-	task.forEach((li) => {
+	const tasks = JSON.parse(localStorage.getItem("tasks_data")) || [];
+
+	tasks.forEach((task) => {
 		createTaskElement(task.text, task.done);
 	});
 }
