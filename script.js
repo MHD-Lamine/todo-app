@@ -11,6 +11,7 @@ function addTask() {
 	if (!text) return;
 
 	createTaskElement(text);
+	saveTasks();
 	input.value="";
 }
 
@@ -40,10 +41,12 @@ function createTaskElement(text, done = false){
 	//event checkboxe
 	checkBox.addEventListener("change", () => {
 		span.classList.toggle("done");
+		saveTasks();
 	});
 
 	deleteBtn.addEventListener("click", () => {
 		li.remove();
+		saveTasks();
 	});
 
 	li.append(checkBox, span, deleteBtn);
@@ -51,3 +54,28 @@ function createTaskElement(text, done = false){
 
 }
 
+
+function saveTasks(){
+
+	const tasks = [];
+
+	document.querySelectorAll("li").forEach((li) => {
+
+		const text = li.querySelector("span").textContent;
+		const done = li.querySelector("input").checked;
+
+		tasks.push({text, done});
+	});
+
+	localStarage.setItem("tasks_data", JSON.stringify(tasks));
+}
+
+function loadTasks(){
+	const task = JSON.parse(localStarage.getItem("tasks_data"));
+
+	task.forEach((li) => {
+		createTaskElement(task.text, task.done);
+	});
+}
+
+loadTasks();
