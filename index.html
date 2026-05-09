@@ -1,53 +1,120 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>Todo App</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
 </head>
 
 <body>
 
   <div class="app">
 
-    <h1 class="title">Todo App</h1>
+    <!-- =========================
+         HEADER
+    ========================== -->
 
-    <div class="todo-input">
+    <header class="header">
+
+      <h1 class="title">
+        Todo App
+      </h1>
+
+      <button
+        id="themeToggle"
+        aria-label="Changer le thème"
+      >
+        🌙
+      </button>
+
+    </header>
+
+
+    <!-- =========================
+         INPUT SECTION
+    ========================== -->
+
+    <section class="todo-input">
+
       <input
         id="taskInput"
         type="text"
         placeholder="Ajouter une tâche..."
+        autocomplete="off"
+        aria-label="Ajouter une tâche"
       />
 
-      <button id="addBtn">Ajouter</button>
-    </div>
+      <button id="addBtn">
+        Ajouter
+      </button>
 
-    <ul id="taskList"></ul>
+    </section>
 
-    <div class="footer">
 
-  <p id="taskCount">0 tâche</p>
+    <!-- =========================
+         TASK LIST
+    ========================== -->
 
-  <div class="filters">
-    <button data-filter="all">All</button>
-    <button data-filter="active">Active</button>
-    <button data-filter="done">Done</button>
+    <main>
+
+      <ul id="taskList"></ul>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+      <p id="taskCount">
+        0 tâche(s)
+      </p>
+
+
+      <!-- FILTERS -->
+
+      <div class="filters">
+
+        <button data-filter="all">
+          All
+        </button>
+
+        <button data-filter="active">
+          Active
+        </button>
+
+        <button data-filter="done">
+          Done
+        </button>
+
+      </div>
+
+
+      <!-- CLEAR BUTTON -->
+
+      <button id="clearCompleted">
+        Clear completed
+      </button>
+
+    </footer>
+
   </div>
 
-  <button id="clearCompleted">
-    Clear completed
-  </button>
-
-</div>
-
-<button id="themeToggle">
-  🌙 Dark Mode
-</button>
-
-
-</div>
-
   <script src="script.js"></script>
+
 </body>
+
 </html>

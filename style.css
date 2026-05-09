@@ -1,21 +1,43 @@
+/* =========================
+   RESET
+========================= */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  transition: all 0.2s ease;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    opacity 0.2s ease,
+    transform 0.2s ease;
 }
-button:hover {
-  opacity: 0.8;
-}
+
+
+/* =========================
+   BODY
+========================= */
+
 body {
   font-family: Arial, sans-serif;
+
   background: #f4f4f4;
 
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+
+  min-height: 100vh;
 
   padding-top: 50px;
 }
+
+
+/* =========================
+   APP CONTAINER
+========================= */
+
 .app {
   width: 400px;
 
@@ -25,20 +47,75 @@ body {
 
   border-radius: 10px;
 
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  box-shadow:
+    0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.title {
-  text-align: center;
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   margin-bottom: 20px;
 }
 
+.title {
+  font-size: 28px;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  border: none;
+
+  cursor: pointer;
+
+  border-radius: 5px;
+}
+
+button:hover {
+  opacity: 0.9;
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================
+   THEME BUTTON
+========================= */
+
+#themeToggle {
+  background: black;
+  color: white;
+
+  padding: 8px 12px;
+}
+
+
+/* =========================
+   INPUT SECTION
+========================= */
+
 .todo-input {
   display: flex;
+
   gap: 10px;
 
   margin-bottom: 20px;
 }
+
+
+/* =========================
+   INPUT
+========================= */
 
 #taskInput {
   flex: 1;
@@ -52,25 +129,39 @@ body {
   outline: none;
 }
 
+#taskInput:focus {
+  border-color: black;
+}
+
+
+/* =========================
+   ADD BUTTON
+========================= */
+
 #addBtn {
-  padding: 10px 15px;
-
-  border: none;
-
   background: black;
-
   color: white;
 
-  border-radius: 5px;
-
-  cursor: pointer;
+  padding: 10px 15px;
 }
+
+
+/* =========================
+   TASK LIST
+========================= */
+
+#taskList {
+  list-style: none;
+}
+
+
+/* =========================
+   TASK ITEM
+========================= */
 
 li {
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
 
   gap: 10px;
@@ -82,27 +173,57 @@ li {
   background: #f9f9f9;
 
   border-radius: 5px;
+
   animation: fadeIn 0.3s ease;
 }
 
+
+/* =========================
+   TASK TEXT
+========================= */
+
+li span {
+  flex: 1;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   COMPLETED TASK
+========================= */
+
 .done {
   text-decoration: line-through;
+
   opacity: 0.5;
 }
 
+
+/* =========================
+   DELETE BUTTON
+========================= */
+
 li button {
-  border: none;
-
   background: crimson;
-
   color: white;
 
   padding: 5px 10px;
+}
 
-  border-radius: 5px;
 
+/* =========================
+   CHECKBOX
+========================= */
+
+input[type="checkbox"] {
   cursor: pointer;
 }
+
+
+/* =========================
+   FOOTER
+========================= */
 
 .footer {
   margin-top: 20px;
@@ -113,11 +234,39 @@ li button {
   gap: 10px;
 }
 
+
+/* =========================
+   FILTERS
+========================= */
+
 .filters {
   display: flex;
+
   gap: 10px;
 }
 
+.filters button {
+  background: #e5e5e5;
+
+  padding: 8px 12px;
+}
+
+
+/* =========================
+   CLEAR BUTTON
+========================= */
+
+#clearCompleted {
+  background: crimson;
+  color: white;
+
+  padding: 10px;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
 
 @keyframes fadeIn {
 
@@ -132,6 +281,11 @@ li button {
   }
 }
 
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 500px) {
 
   .app {
@@ -145,23 +299,67 @@ li button {
   .filters {
     flex-wrap: wrap;
   }
+
+  .filters button {
+    flex: 1;
+  }
 }
+
+
+/* =========================
+   DARK MODE
+========================= */
 
 .dark {
   background: #121212;
   color: white;
 }
 
+
+/* APP */
+
 .dark .app {
   background: #1e1e1e;
 }
 
-.dark input {
+
+/* INPUT */
+
+.dark #taskInput {
   background: #333;
+
   color: white;
+
   border-color: #555;
 }
+
+
+/* TASK */
+
 .dark li {
   background: #2a2a2a;
 }
 
+
+/* BUTTONS */
+
+.dark button {
+  background: #333;
+
+  color: white;
+}
+
+
+/* DELETE BUTTON */
+
+.dark li button,
+.dark #clearCompleted {
+  background: crimson;
+}
+
+
+/* FILTER BUTTONS */
+
+.dark .filters button {
+  background: #444;
+}
